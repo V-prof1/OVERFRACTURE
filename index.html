@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#070912" />
+  <meta name="description" content="OVERFRACTURE — incremental roguelite survival mobile-first." />
+  <title>OVERFRACTURE</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="eyebrow">V-PROF1 // PROTOTYPE</div>
+        <h1>OVER<span>FRACTURE</span></h1>
+      </div>
+      <button id="soundBtn" class="icon-btn" aria-label="Som">🔊</button>
+    </header>
+
+    <main id="hub" class="screen active">
+      <section class="stats-row">
+        <div class="stat-card"><small>FLUX</small><strong id="fluxText">0</strong></div>
+        <div class="stat-card"><small>SHARDS</small><strong id="shardText">0</strong></div>
+        <div class="stat-card"><small>FRACTURE</small><strong id="fractureText">0</strong></div>
+      </section>
+
+      <section class="hero-grid">
+        <div class="core-panel panel">
+          <div class="panel-head">
+            <div>
+              <small>REACTOR</small>
+              <h2>Fracture Core</h2>
+            </div>
+            <div class="mult" id="multText">x1.00</div>
+          </div>
+          <button id="core" class="core" aria-label="Gerar Flux">
+            <span class="core-ring r1"></span>
+            <span class="core-ring r2"></span>
+            <span class="core-ring r3"></span>
+            <span class="core-center">108</span>
+          </button>
+          <div class="core-info">
+            <span>TOQUE PARA GERAR</span>
+            <strong id="perTapText">+1 Flux</strong>
+          </div>
+          <div id="floatLayer" class="float-layer"></div>
+        </div>
+
+        <div class="run-panel panel">
+          <div class="panel-head">
+            <div>
+              <small>RIFT STATUS</small>
+              <h2>Zona instável</h2>
+            </div>
+            <div class="danger-dot"></div>
+          </div>
+          <p>Entre numa fratura, sobreviva às hordas e volte com Flux e Shards. Cada Fracture aumenta o potencial das próximas runs.</p>
+          <div class="run-features">
+            <span>⚡ Auto-fire</span><span>💨 Dash</span><span>🧬 Mutations</span><span>👁 Boss</span>
+          </div>
+          <button id="startRunBtn" class="primary-btn">ENTER THE RIFT</button>
+          <div class="best-line">Melhor tempo: <b id="bestTimeText">0s</b> · Bosses: <b id="bossKillsText">0</b></div>
+        </div>
+      </section>
+
+      <section class="panel upgrade-panel">
+        <div class="panel-head">
+          <div><small>PERMANENT LAB</small><h2>Upgrades</h2></div>
+          <div class="tiny-note">salvo localmente</div>
+        </div>
+        <div id="upgradeGrid" class="upgrade-grid"></div>
+      </section>
+
+      <section class="panel fracture-panel">
+        <div>
+          <small>BREAK THE LIMIT</small>
+          <h2>Fracture</h2>
+          <p>Reseta Flux e upgrades de produção. Você recebe Shards permanentes e aumenta o multiplicador global.</p>
+        </div>
+        <div class="fracture-action">
+          <div>Requer <b id="fractureReqText">10K Flux</b></div>
+          <div>Recompensa <b id="fractureRewardText">+1 Shard</b></div>
+          <button id="fractureBtn" class="secondary-btn">FRACTURE CORE</button>
+        </div>
+      </section>
+    </main>
+
+    <main id="runScreen" class="screen run-screen">
+      <canvas id="gameCanvas"></canvas>
+      <div class="run-hud">
+        <div class="hud-left">
+          <div class="hud-pill"><span>HP</span><b id="hpText">100/100</b></div>
+          <div class="hp-bar"><i id="hpBar"></i></div>
+        </div>
+        <div class="hud-center">
+          <b id="timerText">0:00</b>
+          <small id="waveText">WAVE 1</small>
+        </div>
+        <div class="hud-right">
+          <div class="hud-pill"><span>LV</span><b id="runLevelText">1</b></div>
+          <div class="hud-pill"><span>KILLS</span><b id="killsText">0</b></div>
+        </div>
+      </div>
+      <div class="xp-bar"><i id="xpBar"></i></div>
+      <button id="dashBtn" class="dash-btn">DASH</button>
+      <button id="leaveRunBtn" class="leave-btn">✕</button>
+      <div class="joystick-hint">ARRASTE PARA MOVER</div>
+    </main>
+
+    <div id="choiceModal" class="modal hidden">
+      <div class="modal-card">
+        <small>RIFT EVOLUTION</small>
+        <h2>Escolha uma mutação</h2>
+        <div id="choiceGrid" class="choice-grid"></div>
+      </div>
+    </div>
+
+    <div id="resultModal" class="modal hidden">
+      <div class="modal-card result-card">
+        <small id="resultEyebrow">RUN COMPLETE</small>
+        <h2 id="resultTitle">Rift survived</h2>
+        <div class="result-grid">
+          <div><span>Tempo</span><b id="resultTime">0s</b></div>
+          <div><span>Kills</span><b id="resultKills">0</b></div>
+          <div><span>Flux</span><b id="resultFlux">+0</b></div>
+          <div><span>Shards</span><b id="resultShards">+0</b></div>
+        </div>
+        <button id="resultBackBtn" class="primary-btn">BACK TO CORE</button>
+      </div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
